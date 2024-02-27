@@ -7,12 +7,14 @@ import {
 } from "react-native";
 import Title from "../components/Title";
 import Card from "../components/Card";
+import Payment from "../components/Payment";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Title username="Muhammad Iko Wiryadirja"/>
       <Card/>
+      <Payment/>
       {/* <TouchableOpacity
         onPress={() => navigation.navigate("Register")}
         style={{backgroundColor:"blue", padding:10}}

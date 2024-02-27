@@ -4,7 +4,6 @@ const Card = () => {
   const listImage = [
     {
       title: "QRIS",
-      url: "../../assets/icon_qris.png",
       url: require("../../assets/icon_qris.png"),
     },
     {
@@ -16,7 +15,7 @@ const Card = () => {
       url: require("../../assets/icon_topup.png"),
     },
   ];
-  const items = [];
+  
   const renderItem = ({ item }) => (
     <View style={styles.featureIcon}>
       <Image source={item.url}></Image>
@@ -32,7 +31,7 @@ const Card = () => {
       </View>
       <View style={styles.separator} />
       <View style={styles.feature}>
-        <FlatList data={listImage} numColumns={3} renderItem={renderItem} horizontal={false}/>
+        <FlatList data={listImage} numColumns={3} renderItem={renderItem}/>
       </View>
     </View>
   );
@@ -44,6 +43,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 30,
     padding: 24,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   horizontal: {
     flexDirection: "row",
