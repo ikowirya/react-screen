@@ -2,20 +2,17 @@ import { StyleSheet, View, Text, ScrollView, Image, FlatList } from "react-nativ
 
 const Promotion = () => {
   const listImage = [
-    {
-      url: require("../../assets/icon_promotion.png"),
-    },
-    {
-      url: require("../../assets/icon_banner_special.png"),
-    },
+    require("../../assets/icon_promotion.png"),
+    require("../../assets/icon_banner_special.png")
   ];
 
   const renderItem = ({ item }) => (
       <Image
         style={styles.banner}
-        source={item.url}
+        source={item}
       />
   );
+  
   return (
     <View>
       <View style={styles.container}>

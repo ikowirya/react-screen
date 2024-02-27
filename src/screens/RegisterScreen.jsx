@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   View,
-  ImageBackground,
-  ScrollView,
   Text,
   Image,
   TextInput,

@@ -6,23 +6,9 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { listImageHome } from "../utils/constants";
 
 const Card = () => {
-  const listImage = [
-    {
-      title: <Text style={{ color: "#852884" }}>QRIS</Text>,
-      url: require("../../assets/icon_qris.png"),
-    },
-    {
-      title: <Text style={{ color: "#852884" }}>Kirim Data</Text>,
-      url: require("../../assets/icon_kirim_dana.png"),
-    },
-    {
-      title: <Text style={{ color: "#852884" }}>Top Up</Text>,
-      url: require("../../assets/icon_topup.png"),
-    },
-  ];
-
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.featureIcon}>
       <Image source={item.url}></Image>
@@ -40,7 +26,7 @@ const Card = () => {
       <View style={styles.feature}>
         <FlatList
           columnWrapperStyle={{ justifyContent: "space-between" }}
-          data={listImage}
+          data={listImageHome}
           numColumns={3}
           renderItem={renderItem}
           scrollEnabled={false}

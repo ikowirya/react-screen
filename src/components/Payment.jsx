@@ -9,24 +9,16 @@ import {
 
 const Payment = () => {
   const listImage = [
-    {
-      url: require("../../assets/icon_telco.png"),
-    },
-    {
-      url: require("../../assets/icon_pln.png"),
-    },
-    {
-      url: require("../../assets/icon_pdam.png"),
-    },
-    {
-      url: require("../../assets/icon_school.png"),
-    },
+    require("../../assets/icon_telco.png"),
+    require("../../assets/icon_pln.png"),
+    require("../../assets/icon_pdam.png"),
+    require("../../assets/icon_school.png")
   ];
 
   const renderItem = ({ item }) => (
     <View style={styles.featureIcon}>
       <TouchableOpacity>
-        <Image source={item.url}></Image>
+        <Image source={item}></Image>
       </TouchableOpacity>
     </View>
   );

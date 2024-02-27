@@ -1,11 +1,11 @@
-import { StyleSheet, View, ImageBackground, ScrollView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Title from "../components/Title";
 import Card from "../components/Card";
 import Payment from "../components/Payment";
 import Promotion from "../components/Promotion";
 import ParentComponent from "../components/ParentComponent";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   return (
     <ParentComponent>
       <View style={styles.container}>
