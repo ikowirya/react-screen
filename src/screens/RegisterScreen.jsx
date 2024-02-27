@@ -7,19 +7,31 @@ import {
   Text,
   Image,
   TextInput,
-  Alert,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { constants } from "../utils/constants";
+import { isValidNumberTelepon } from "../utils/validation";
+import ParentComponent from "../components/ParentComponent";
 
 const RegisterScreen = () => {
   const [otp, setOtp] = useState("");
   const [isValid, setValid] = useState(true);
   const navigation = useNavigation();
+  const handleInputChange = (text) => {
+    setOtp(text);
+    const phoneNumberRegex = isValidNumberTelepon(text);
+    if (phoneNumberRegex) {
+      setValid(true);
+    } else {
+      setValid(false);
+    }
+  };
+
   const handleClick = async () => {
     try {
-      const isValidInput = /^\d+$/.test(otp) && otp.length >= 9;
-      if (isValidInput) {
+      const numberTelepon = isValidNumberTelepon(otp);
+      if (numberTelepon) {
         setValid(true);
         navigation.navigate("Home");
       } else {
@@ -31,68 +43,60 @@ const RegisterScreen = () => {
   };
 
   return (
-    <ScrollView>
-      <ImageBackground
-        style={styles.image}
-        source={require("../../assets/icon_background.png")}
-      >
-        <View style={styles.container}>
-          <View style={styles.horizontal}>
-            <Image source={require("../../assets/icon_arrow_back.png")}></Image>
-            <Text style={styles.title}>Daftar Baru</Text>
-          </View>
-          <View style={styles.card}>
-            <Text style={styles.titleContent}>Assalamualaikum</Text>
-            <Text>Selamat datang di Syariah</Text>
-            <Image
-              style={{ width: "100%" }}
-              source={require("../../assets/icon_illustration.png")}
-            />
-            <Text style={styles.spacing}>
-              Mohon masukkan nomor telepon Anda, kami akan mengirimkan kode OTP
-              ke nomor Anda melalui WhatsApp/SMS.
-            </Text>
-            <Text style={styles.nomorTelepon}>Nomor Telepon</Text>
-
-            <TextInput
-              style={styles.inputNomorTelepon}
-              placeholder="Input Number"
-              keyboardType="numeric"
-              onChangeText={(text)=> setOtp(text)}
-            ></TextInput>
-            {!isValid ? (
-              <Text style={{ color: "red" }}>
-                Nomor yang anda masukkan tidak valid{" "}
-              </Text>
-            ) : null}
-            <Text>Contoh: 081234567890</Text>
-            <View>
-              <Text style={{ textAlign: "justify" }}>
-                Saya telah menyetujui data pribadi saya dikelola oleh PT Solusi
-                Pasti Indonesia dan partner yang bekerja sama dengan PT Solusi
-                Pasti Indonesia untuk tujuan yang telah disebutkan di dalam.
-              </Text>
-            </View>
-            <Text style={{ color: "#852884", fontWeight: "bold" }}>
-              Kebijakan Privasi Syariah
-            </Text>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#852884",
-                borderRadius: 10,
-                marginTop: 24,
-                padding: 16,
-              }}
-              onPress={(handleClick)}
-            >
-              <Text style={{ textAlign: "center", color: "white" }}>
-                Kirim OTP
-              </Text>
-            </TouchableOpacity>
-          </View>
+    <ParentComponent>
+      <View style={styles.container}>
+        <View style={styles.horizontal}>
+          <Image source={require("../../assets/icon_arrow_back.png")}></Image>
+          <Text style={styles.title}>Daftar Baru</Text>
         </View>
-      </ImageBackground>
-    </ScrollView>
+        <View style={styles.card}>
+          <Text style={styles.titleContent}>Assalamualaikum</Text>
+          <Text>Selamat datang di Syariah</Text>
+          <Image
+            style={{ width: "100%" }}
+            source={require("../../assets/icon_illustration.png")}
+          />
+          <Text style={styles.spacing}>
+            {constants.register.banner_description}
+          </Text>
+          <Text style={styles.nomorTelepon}>Nomor Telepon</Text>
+          <TextInput
+            style={styles.inputNomorTelepon}
+            placeholder="Input Number"
+            keyboardType="numeric"
+            onChangeText={(text) => handleInputChange(text)}
+          ></TextInput>
+          {!isValid && (
+            <Text style={styles.validation}>
+              Nomor yang anda masukkan valid
+            </Text>
+          )}
+
+          <Text>Contoh: 081234567890</Text>
+          <View>
+            <Text style={{ textAlign: "justify" }}>
+              {constants.register.kebijakan}
+            </Text>
+          </View>
+          <Text style={{ color: "#852884", fontWeight: "bold" }}>
+            Kebijakan Privasi Syariah
+          </Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#852884",
+              borderRadius: 10,
+              marginTop: 24,
+              padding: 16,
+            }}
+            onPress={handleClick}
+          >
+            <Text style={{ textAlign: "center", color: "white" }}>
+              Kirim OTP
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ParentComponent>
   );
 };
 
@@ -142,6 +146,9 @@ const styles = StyleSheet.create({
     borderColor: "grey",
     padding: 10,
     marginTop: 10,
+  },
+  validation: {
+    color: "red",
   },
 });
 
