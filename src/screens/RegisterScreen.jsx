@@ -14,7 +14,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const RegisterScreen = () => {
   const [otp, setOtp] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [isValid, setValid] = useState(true);
   const navigation = useNavigation();
   const handleClick = async () => {
@@ -43,7 +42,6 @@ const RegisterScreen = () => {
             <Text style={styles.title}>Daftar Baru</Text>
           </View>
           <View style={styles.card}>
-            {/* <TouchableOpacity onPress={() => navigation.navigate("Home")}> */}
             <Text style={styles.titleContent}>Assalamualaikum</Text>
             <Text>Selamat datang di Syariah</Text>
             <Image
