@@ -8,6 +8,7 @@ import {
 import Title from "../components/Title";
 import Card from "../components/Card";
 import Payment from "../components/Payment";
+import Promotion from "../components/Promotion";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -15,6 +16,7 @@ const HomeScreen = ({ navigation }) => {
       <Title username="Muhammad Iko Wiryadirja"/>
       <Card/>
       <Payment/>
+      <Promotion/>
       {/* <TouchableOpacity
         onPress={() => navigation.navigate("Register")}
         style={{backgroundColor:"blue", padding:10}}

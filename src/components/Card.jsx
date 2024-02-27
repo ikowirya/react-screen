@@ -1,4 +1,11 @@
-import { StyleSheet, View, Text, Image, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
 const Card = () => {
   const listImage = [
@@ -15,12 +22,12 @@ const Card = () => {
       url: require("../../assets/icon_topup.png"),
     },
   ];
-  
+
   const renderItem = ({ item }) => (
-    <View style={styles.featureIcon}>
+    <TouchableOpacity style={styles.featureIcon}>
       <Image source={item.url}></Image>
       <Text style={styles.featureText}>{item.title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -31,7 +38,12 @@ const Card = () => {
       </View>
       <View style={styles.separator} />
       <View style={styles.feature}>
-        <FlatList data={listImage} numColumns={3} renderItem={renderItem}/>
+        <FlatList
+          data={listImage}
+          numColumns={3}
+          renderItem={renderItem}
+          scrollEnabled={false}
+        />
       </View>
     </View>
   );

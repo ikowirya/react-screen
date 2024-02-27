@@ -1,4 +1,12 @@
-import { StyleSheet, View, Text, Image, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from "react-native";
+
 const Payment = () => {
   const listImage = [
     {
@@ -17,17 +25,23 @@ const Payment = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.featureIcon}>
-      <Image source={item.url}></Image>
+      <TouchableOpacity>
+        <Image source={item.url}></Image>
+      </TouchableOpacity>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={listImage}
-        numColumns={4}
-        renderItem={renderItem}
-      />
+    <View>
+      <Text style={styles.title}>List Pembayaran</Text>
+      <View style={styles.container}>
+        <FlatList
+          data={listImage}
+          numColumns={4}
+          renderItem={renderItem}
+          scrollEnabled={false}
+        />
+      </View>
     </View>
   );
 };
@@ -35,11 +49,18 @@ const Payment = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    marginTop: 24
+    alignContent: "space-between",
+    marginTop: 24,
   },
   featureIcon: {
     alignItems: "center",
     width: "25%",
+  },
+  title: {
+    marginTop: 24,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#852884",
   },
 });
 
