@@ -2,7 +2,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity,
+  ScrollView,
   Image,
   FlatList,
 } from "react-native";
@@ -14,7 +14,17 @@ const Promotion = () => {
         <Text style={styles.title}>Promo & Diskon</Text>
         <Text style={styles.titleAll}>Lihat Semua</Text>
       </View>
-      <Image style={styles.banner} source={require("../../assets/icon_promotion.png")} />
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <Image
+          style={styles.banner}
+          source={require("../../assets/icon_promotion.png")}
+        />
+        <Image
+          resizeMode="cover"
+          style={styles.banner}
+          source={require("../../assets/icon_promotion.png")}
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -39,8 +49,12 @@ const styles = StyleSheet.create({
   },
   banner: {
     marginTop: 24,
-    width: "100%"
-  }
+    
+    width: 280, // Adjust the width of the image
+    height: 180, // Adjust the height of the image
+    marginHorizontal: 10, // Adjust the margin as needed
+    borderRadius: 10,
+  },
 });
 
 export default Promotion;
