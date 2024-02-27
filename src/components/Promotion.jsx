@@ -1,13 +1,21 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Image,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Image, FlatList } from "react-native";
 
 const Promotion = () => {
+  const listImage = [
+    {
+      url: require("../../assets/icon_promotion.png"),
+    },
+    {
+      url: require("../../assets/icon_banner_special.png"),
+    },
+  ];
+
+  const renderItem = ({ item }) => (
+      <Image
+        style={styles.banner}
+        source={item.url}
+      />
+  );
   return (
     <View>
       <View style={styles.container}>
@@ -15,14 +23,11 @@ const Promotion = () => {
         <Text style={styles.titleAll}>Lihat Semua</Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <Image
-          style={styles.banner}
-          source={require("../../assets/icon_promotion.png")}
-        />
-        <Image
-          resizeMode="cover"
-          style={styles.banner}
-          source={require("../../assets/icon_promotion.png")}
+        <FlatList
+          data={listImage}
+          numColumns={2}
+          renderItem={renderItem}
+          scrollEnabled={false}
         />
       </ScrollView>
     </View>
@@ -49,9 +54,8 @@ const styles = StyleSheet.create({
   },
   banner: {
     marginTop: 24,
-    flex:1, // Adjust the width of the image
-    height: 180, // Adjust the height of the image
-    marginHorizontal: 3, // Adjust the margin as needed
+    height: 180,
+    marginHorizontal: 5,
     borderRadius: 10,
   },
 });

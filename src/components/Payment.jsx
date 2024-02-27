@@ -50,7 +50,6 @@ const Payment = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignContent: "space-between",
     marginTop: 24,
   },
   featureIcon: {

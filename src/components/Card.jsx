@@ -10,15 +10,15 @@ import {
 const Card = () => {
   const listImage = [
     {
-      title: "QRIS",
+      title: <Text style={{ color: "#852884" }}>QRIS</Text>,
       url: require("../../assets/icon_qris.png"),
     },
     {
-      title: "Kirim Data",
+      title: <Text style={{ color: "#852884" }}>Kirim Data</Text>,
       url: require("../../assets/icon_kirim_dana.png"),
     },
     {
-      title: "Top Up",
+      title: <Text style={{ color: "#852884" }}>Top Up</Text>,
       url: require("../../assets/icon_topup.png"),
     },
   ];
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
   feature: {
     marginTop: 24,
     flexDirection: "row",
-    justifyContent: "space-between",
   },
   featureIcon: {
     alignItems: "center",
