@@ -39,6 +39,7 @@ const Card = () => {
       <View style={styles.separator} />
       <View style={styles.feature}>
         <FlatList
+          columnWrapperStyle={{ justifyContent: "space-between" }}
           data={listImage}
           numColumns={3}
           renderItem={renderItem}
@@ -87,7 +88,6 @@ const styles = StyleSheet.create({
   },
   featureIcon: {
     alignItems: "center",
-    width: "33.3%",
   },
   featureText: {
     marginTop: 20,

@@ -49,10 +49,9 @@ const styles = StyleSheet.create({
   },
   banner: {
     marginTop: 24,
-    
-    width: 280, // Adjust the width of the image
+    flex:1, // Adjust the width of the image
     height: 180, // Adjust the height of the image
-    marginHorizontal: 10, // Adjust the margin as needed
+    marginHorizontal: 3, // Adjust the margin as needed
     borderRadius: 10,
   },
 });

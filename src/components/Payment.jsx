@@ -38,6 +38,7 @@ const Payment = () => {
         <FlatList
           data={listImage}
           numColumns={4}
+          columnWrapperStyle={{justifyContent:"space-between"}}
           renderItem={renderItem}
           scrollEnabled={false}
         />
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
   },
   featureIcon: {
     alignItems: "center",
-    width: "25%",
   },
   title: {
     marginTop: 24,
