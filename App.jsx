@@ -5,43 +5,60 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-export default function App() {
-  const Tab = createBottomTabNavigator();
+const HomeStackNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="Home"
-          options={{
-            tabBarIcon: () => (
-              <Image
-                source={require("./assets/icon_home.png")} 
-                style={{
-                  width: 26,
-                  height: 26,
-                }}
-              />
-            ),
-            headerShown: false,
-          }}
-          component={HomeScreen}
-        />
-        <Tab.Screen
-          name="Register"
-          options={{ tabBarIcon: () => (
+    <Stack.Navigator initialRouteName="Register">
+      <Stack.Screen name="Home" options={{headerShown:false}} component={HomeTabNavigator}></Stack.Screen>
+      <Stack.Screen name="Register"  options={{headerShown:false}}   component={RegisterScreen}></Stack.Screen>
+    </Stack.Navigator>
+  );
+};
+
+const HomeTabNavigator = () => {
+  return (
+    <Tab.Navigator initialRouteName="HomeTab">
+      <Tab.Screen
+        name="HomeTab"
+        options={{
+          tabBarIcon: () => (
             <Image
-              source={require("./assets/icon_profile.png")} 
+              source={require("./assets/icon_home.png")}
               style={{
                 width: 26,
                 height: 26,
               }}
             />
           ),
-          headerShown: false }}
-          component={RegisterScreen}
-        />
-      </Tab.Navigator>
+          headerShown: false,
+        }}
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        name="RegisterTab"
+        options={{
+          tabBarIcon: () => (
+            <Image
+              source={require("./assets/icon_profile.png")}
+              style={{
+                width: 26,
+                height: 26,
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+        component={RegisterScreen}
+      />
+    </Tab.Navigator>
+  );
+};
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <HomeStackNavigator />
     </NavigationContainer>
   );
 }
