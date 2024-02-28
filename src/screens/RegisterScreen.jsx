@@ -6,15 +6,23 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Pressable,
+  ActivityIndicator
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
 import { useNavigation } from "@react-navigation/native";
-import { constants } from "../utils/constants";
-import { isValidNumberTelepon } from "../utils/validation";
+import { constants } from "../utils/Constants";
+import { isValidNumberTelepon, validationChecked } from "../utils/Validation";
 import ParentComponent from "../components/ParentComponent";
 
 const RegisterScreen = () => {
   const [otp, setOtp] = useState("");
   const [isValid, setValid] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState();
+  const [checked, setChecked] = useState(false);
+
   const navigation = useNavigation();
   const handleInputChange = (text) => {
     setOtp(text);
@@ -28,15 +36,21 @@ const RegisterScreen = () => {
 
   const handleClick = async () => {
     try {
-      const numberTelepon = isValidNumberTelepon(otp);
-      if (numberTelepon) {
+      setLoading(true);
+      setChecked(true);
+      const validationResult = await validationChecked(otp, checked);
+      if (validationResult) {
         setValid(true);
+        setResult(validationResult);
         navigation.navigate("Home");
       } else {
         setValid(false);
       }
     } catch (error) {
       console.error("An error occurred:", error);
+      setResult(null);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,14 +85,25 @@ const RegisterScreen = () => {
           )}
 
           <Text>Contoh: 081234567890</Text>
-          <View>
-            <Text style={{ textAlign: "justify" }}>
-              {constants.register.kebijakan}
-            </Text>
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
+            <Pressable
+              style={[styles.checkboxBase, checked && styles.checkboxChecked]}
+              onPress={() => {
+                setChecked(!checked);
+              }}
+            >
+              {checked && <Ionicons name="checkmark" size={24} color="white" />}
+            </Pressable>
+            <View style={{ flex: 1 }}>
+              <Text style={{ textAlign: "justify" }}>
+                {constants.register.kebijakan}
+              </Text>
+              <Text style={{ color: "#852884", fontWeight: "bold" }}>
+                Kebijakan Privasi Syariah
+              </Text>
+            </View>
           </View>
-          <Text style={{ color: "#852884", fontWeight: "bold" }}>
-            Kebijakan Privasi Syariah
-          </Text>
+
           <TouchableOpacity
             style={{
               backgroundColor: "#852884",
@@ -86,12 +111,18 @@ const RegisterScreen = () => {
               marginTop: 24,
               padding: 16,
             }}
+            disabled={loading}
             onPress={handleClick}
           >
             <Text style={{ textAlign: "center", color: "white" }}>
               Kirim OTP
             </Text>
           </TouchableOpacity>
+          {loading && (
+            <View style={styles.loading}>
+              <ActivityIndicator size="large" />
+            </View>
+          )}
         </View>
       </View>
     </ParentComponent>
@@ -105,6 +136,14 @@ const styles = StyleSheet.create({
   image: {
     height: 850,
     resizeMode: "cover",
+  },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    flexDirection: "column",
+    alignSelf: "center",
+    position: "absolute",
+    marginTop: 300,
   },
   horizontal: {
     flexDirection: "row",
@@ -147,6 +186,20 @@ const styles = StyleSheet.create({
   },
   validation: {
     color: "red",
+  },
+  checkboxBase: {
+    width: 24,
+    height: 24,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderWidth: 2,
+    marginRight: 5,
+    borderColor: "#852884",
+    backgroundColor: "transparent",
+  },
+  checkboxChecked: {
+    backgroundColor: "#852884",
   },
 });
 

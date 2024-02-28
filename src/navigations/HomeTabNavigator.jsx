@@ -6,9 +6,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 export const HomeTabNavigator = () => {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator initialRouteName="HomeTab">
+    <Tab.Navigator initialRouteName="Beranda">
       <Tab.Screen
-        name="HomeTab"
+        name="Beranda"
         options={{
           tabBarIcon: () => (
             <Image
@@ -24,7 +24,7 @@ export const HomeTabNavigator = () => {
         component={HomeScreen}
       />
       <Tab.Screen
-        name="RegisterTab"
+        name="Profil"
         options={{
           tabBarIcon: () => (
             <Image

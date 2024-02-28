@@ -6,7 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { listImageHome } from "../utils/constants";
+import { listImageHome } from "../utils/Constants";
 
 const Card = () => {
   const renderItem = ({ item }) => (
