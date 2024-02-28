@@ -10,7 +10,7 @@ const Promotion = ({ banner }) => {
   const renderItem = ({ item }) => (
     <Image
       style={styles.banner}
-      source={{ uri: item.image, height: 180, width: 280 }}
+      source={{ uri: item.image, height: 170, width: 300 }}
     />
   );
 
