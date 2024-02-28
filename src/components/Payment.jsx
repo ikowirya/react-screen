@@ -7,18 +7,12 @@ import {
   FlatList,
 } from "react-native";
 
-const Payment = () => {
-  const listImage = [
-    require("../../assets/icon_telco.png"),
-    require("../../assets/icon_pln.png"),
-    require("../../assets/icon_pdam.png"),
-    require("../../assets/icon_school.png")
-  ];
+const Payment = ({ menu }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.featureIcon}>
       <TouchableOpacity>
-        <Image source={item}></Image>
+        <Image source={{ uri: item.image, height: 64, width: 64 }}></Image>
       </TouchableOpacity>
     </View>
   );
@@ -28,9 +22,9 @@ const Payment = () => {
       <Text style={styles.title}>List Pembayaran</Text>
       <View style={styles.container}>
         <FlatList
-          data={listImage}
+          data={menu}
           numColumns={4}
-          columnWrapperStyle={{justifyContent:"space-between"}}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
           renderItem={renderItem}
           scrollEnabled={false}
         />

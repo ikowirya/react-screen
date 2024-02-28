@@ -2,6 +2,7 @@ import HomeScreen from "../screens/HomeScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ProfileScreen from "../screens/ProfileScreen";
 
 export const HomeTabNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -37,7 +38,7 @@ export const HomeTabNavigator = () => {
           ),
           headerShown: false,
         }}
-        component={RegisterScreen}
+        component={ProfileScreen}
       />
     </Tab.Navigator>
   );

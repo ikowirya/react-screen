@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { constants } from "../utils/Constants";
 import { isValidNumberTelepon, validationChecked } from "../utils/Validation";
 import ParentComponent from "../components/ParentComponent";
+import { getAccount } from "../network/Api";
 
 const RegisterScreen = () => {
   const [otp, setOtp] = useState("");
@@ -53,7 +54,7 @@ const RegisterScreen = () => {
       setLoading(false);
     }
   };
-
+  
   return (
     <ParentComponent>
       <View style={styles.container}>

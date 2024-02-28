@@ -6,12 +6,11 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { listImageHome } from "../utils/Constants";
 
-const Card = () => {
+const Card = ({ balance, menu }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.featureIcon}>
-      <Image source={item.url}></Image>
+      <Image source={{ uri: item.image, height: 36, width: 36 }}></Image>
       <Text style={styles.featureText}>{item.title}</Text>
     </TouchableOpacity>
   );
@@ -20,13 +19,13 @@ const Card = () => {
     <View style={styles.container}>
       <View style={styles.horizontal}>
         <Text style={styles.title}>Saldo</Text>
-        <Text style={styles.cash}>Rp 2.000.000</Text>
+        <Text style={styles.cash}>Rp {balance}</Text>
       </View>
       <View style={styles.separator} />
       <View style={styles.feature}>
         <FlatList
           columnWrapperStyle={{ justifyContent: "space-between" }}
-          data={listImageHome}
+          data={menu}
           numColumns={3}
           renderItem={renderItem}
           scrollEnabled={false}
